@@ -42,24 +42,38 @@
                         <td> <button onclick="carregar_horario('terça-feira')">Carregar</button></td>
                         <td> <button onclick="carregar_horario('quarta-feira')">Carregar</button></td>
                         <td> <button onclick="carregar_horario('quinta-feira')">Carregar</button></td>
-                        <td> <button onclick="carregar_horario('sexta-feira')">Carregar</button></td>
-                    </tr>
+                        <td> <button onclick="carregar_horario('sexta-feira')">Carregar</button> </td>
+                </tr>
             </tbody>
         </table>
     </main>
-    <footer></footer>
+    <footer></footer>   
 
     <script>
 
-       async function carregar_horario(dia){
-           const coluna_dia = document.getElementById(dia)
-           try {
-               const link = "http://localhost:3000/horario/" + dia
-           }catch (erro) {
-               alert(certo)
-               coluna_dia.innerHTML = "Erro ao carregar horários!"
-           }
-       }
+        async function carregar_horario(dia){
+            const coluna_dia = document.getElementById(dia)
+            try {
+                const link = "http://localhost:3000/horario/" + dia
+                const consulta_api = await fetch(link)
+                if(consulta_api.ok) {
+                    const aulas_dia = await consulta_api.json()
+                    if (aulas_dia.length == 0){
+                        coluna_dia.innerHTML = "Nenhuma aula cadastrada!"
+                    } else {
+                        console.log(aulas_dia)
+                        let html = "<ul>"
+                        aulas_dia.forEach((aula) => {
+                            coluna_dia.innerHTML += "<li>" + aula.componente + "</li>"
+                        })
+                        coluna_dia.innerHTML += "</ul>"
+                    }
+                }
+            } catch (erro) {
+                alert(erro)
+                coluna_dia.innerHTML = "Erro ao carregar horários!"
+            }
+        }
 
     </script>
 
