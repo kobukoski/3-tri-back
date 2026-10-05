@@ -1,0 +1,23 @@
+[
+  {
+    "componente": "Programação",
+    "professor": "Ana",
+    "dia": "Terça-feira",
+    "ordem": 2,
+    "id": 3
+  },
+  {
+    "componente": "Física",
+    "professor": "João",
+    "dia": "Quarta-feira",
+    "ordem": 1,
+    "id": 4
+  },
+  {
+    "componente": "Filosofia",
+    "professor": "Ronaldo",
+    "dia": "Terça-feira",
+    "ordem": 3,
+    "id": 5
+  }
+]
